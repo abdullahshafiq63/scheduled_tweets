@@ -1,0 +1,15 @@
+<div class="d-flex align-items-center justify-content-between mt-5">
+  <h1>Twitter Accounts</h1>
+  <%= button_to "Connect a Twitter Account", "/auth/twitter", data: {turbo: "false"}, method: :post, class: "btn btn-primary" %>
+</div>
+
+<% @twitter_accounts.each do |account| %>
+  <div class="d-flex align-items-center mb-4">
+    <div class="me-4">
+      <%= image_tag account.image, class: "rounded-circle" %>
+      <%= link_to "@#{account.username}", "https://twitter.com/#{account.username}", target: :_blank %>
+    </div>
+
+    <%= button_to "Disconnect", account, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+  </div>
+<% end %>
